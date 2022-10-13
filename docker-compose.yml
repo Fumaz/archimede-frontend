@@ -1,0 +1,19 @@
+version: '3'
+
+networks:
+  web:
+    external: true
+
+services:
+  app:
+    image: hexade/archimede-frontend
+    container_name: archimede_frontend
+    restart: unless-stopped
+    networks:
+      - web
+    build: .
+    labels:
+      - traefik.enable=true
+      - traefik.http.routers.archimede_frontend.rule=Host(`archimede.fumaz.dev`)
+      - traefik.http.routers.archimede_frontend.tls.certresolver=lets-encrypt
+      - traefik.http.services.archimede_frontend.loadbalancer.server.port=80
