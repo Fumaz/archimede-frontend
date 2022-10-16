@@ -34,7 +34,7 @@ export const Timetable = () => {
     const navigate = useNavigate();
     const cookies = new Cookies();
 
-    if (cookies.get("type") === undefined || cookies.get("value") === undefined) {
+    if (!cookies.get("type") || !cookies.get("value")) {
         navigate("/choose");
     }
 

@@ -71,8 +71,14 @@ export const ChooseStudent = () => {
                             cookies.remove("type");
                             cookies.remove("value");
 
-                            cookies.set("type", "student");
-                            cookies.set("value", value);
+                            cookies.set("type", "student", {
+                                path: "/",
+                                maxAge: 60 * 60 * 24 * 365
+                            });
+                            cookies.set("value", value, {
+                                path: "/",
+                                maxAge: 60 * 60 * 24 * 365
+                            });
 
                             navigate("/timetable");
                         }}>CONTINUA</Button>
